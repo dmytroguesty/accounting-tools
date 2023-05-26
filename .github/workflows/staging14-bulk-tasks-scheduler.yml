@@ -1,0 +1,16 @@
+name: Trigger accounting-bulk-tasks-scheduler
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+env:
+  ENV: 'staging14'
+  DATACENTER: '2'
+
+jobs:
+  echo:
+    name: Trigger a scheduler each 15 minutes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke POST /accounting-internal/bulk-tasks
+        run: curl -X POST -d {} "https://$ENV-$DATACENTER-internal.guesty.com/accounting-internal/bulk-tasks"
