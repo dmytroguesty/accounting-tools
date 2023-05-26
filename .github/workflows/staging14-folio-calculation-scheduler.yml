@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '*/10 * * * *'
 env:
+  SCHEME: 'https'
   ENV: 'staging14'
   DATACENTER: '2'
 
@@ -13,4 +14,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Invoke POST /accounting-internal/folio
-        run: curl -X POST -d {} "https://$ENV-$DATACENTER-internal.guesty.com/accounting-internal/folio"
+        run: curl -X POST -d {} "$SCHEME://$ENV-$DATACENTER-internal.guesty.com/accounting-internal/folio"
