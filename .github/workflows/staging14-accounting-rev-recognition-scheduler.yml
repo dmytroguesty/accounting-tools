@@ -1,0 +1,17 @@
+name: Trigger accounting-rev-recognition-scheduler
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+env:
+  ENV: 'staging14'
+  DATACENTER: '2'
+  URL_PREFIX: 'revenue-recognition'
+
+jobs:
+  echo:
+    name: Trigger a scheduler each 15 minutes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke POST /accounting-internal/revenue-recognition
+        run: curl -X POST -d {} "https://$ENV-$DATACENTER-internal.guesty.com/accounting-internal/$URL_PREFIX"
