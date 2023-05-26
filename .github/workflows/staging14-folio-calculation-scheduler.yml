@@ -1,4 +1,4 @@
-name: Trigger a job on a CRON Schedule
+name: Trigger accounting-folio-calculation-scheduler
 
 on:
   schedule:
@@ -12,5 +12,5 @@ jobs:
     name: Trigger a scheduler each 10 minutes
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger folio-calculation-scheduler
+      - name: Invoke POST /accounting-internal/folio
         run: curl -X POST -d {} "https://$ENV-$DATACENTER-internal.guesty.com/accounting-internal/folio"
