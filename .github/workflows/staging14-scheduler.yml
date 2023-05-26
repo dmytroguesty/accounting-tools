@@ -3,6 +3,9 @@ name: Trigger a job on a CRON Schedule
 on:
   schedule:
     - cron: '*/10 * * * *'
+env:
+  ENV: 'staging14'
+  DATACENTER: '2'
 
 jobs:
   echo:
@@ -10,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger folio-calculation-scheduler
-        run: curl -X POST -d {} https://staging14-2-internal.guesty.com/accounting-internal/folio
+        run: curl -X POST -d {} "https://$ENV-$DATACENTER-internal.guesty.com/accounting-internal/folio"
